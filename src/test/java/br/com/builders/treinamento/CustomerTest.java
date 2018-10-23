@@ -77,6 +77,15 @@ public class CustomerTest {
 		
 	}
 	
+	@Test
+	public void testShouldGetCustomerList() throws Exception{
+		
+		mockMvc.perform(
+        MockMvcRequestBuilders.get("/api/customers"))
+        .andExpect(status().isOk())
+        .andDo(print());
+	}
+	
 	@Test 
 	public void testShouldUpdateCustomer() throws Exception{
 		
@@ -137,16 +146,6 @@ public class CustomerTest {
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
         .andDo(print());
-		
-	}
-	
-	@Test
-	public void testShouldNotGetCustomerIdEmpty() throws Exception {
-		
-		mockMvc.perform(
-	        MockMvcRequestBuilders.get("/api/customers/{customerId}", ""))
-	        .andExpect(status().isMethodNotAllowed())
-	        .andDo(print());
 		
 	}
 	

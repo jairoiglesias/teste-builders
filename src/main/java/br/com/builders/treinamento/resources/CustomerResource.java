@@ -43,6 +43,14 @@ public class CustomerResource {
 		  
 	  }
 	  
+	  @RequestMapping(value = "/customers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	  @ResponseStatus(value = HttpStatus.OK)
+	  public ResponseEntity<Object> getCustomerList() throws Exception{
+		  
+		  return ResponseEntity.status(HttpStatus.OK).body(customerRepository.findAll());
+		  
+	  }
+	  
 	  @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON)
 	  @ResponseStatus(value = HttpStatus.OK)
 	  public ResponseEntity<Object> createCustomer(@PathVariable("customerId") String customerId, @Valid @RequestBody CustomerRequest request) throws Exception{
